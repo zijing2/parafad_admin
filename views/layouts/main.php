@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Parafad Admin',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,16 +36,25 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => Yii::t('app','Module'), 'url' => ['/site/index'], 'items' => [
+            		['label'=>Yii::t('app','Share'),'url'=>'/basic/web/share'],
+            		['label'=>Yii::t('app','Comment'),'url'=>'/basic/web/comment'],
+            		['label'=>Yii::t('app','Collect'),'url'=>'/basic/web/collect'],
+            		['label'=>Yii::t('app','Like'),'url'=>'/basic/web/like'],
+            		['label'=>Yii::t('app','Picture'),'url'=>'/basic/web/picture'],
+            		['label'=>Yii::t('app','Messagebox'),'url'=>'/basic/web/messagebox'],
+            		['label'=>Yii::t('app','MsgComment'),'url'=>'/basic/web/msg-comment'],
+            		
+            ]],
+//             ['label' => 'About', 'url' => ['/site/about']],
+//             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => Yii::t('app','Login'), 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    Yii::t('app','Logout').' (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()

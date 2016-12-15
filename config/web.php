@@ -6,6 +6,8 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+	//'language' => 'en-US',
+	'language' => 'zh-CN',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -38,16 +40,31 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+    		
+    		'i18n' => [
+    				'translations' => [
+    						'app*' => [
+    								'class' => 'yii\i18n\PhpMessageSource',   //使用php文件保存信息
+    								'basePath' => '@app/messages',  //php文件保存位置
+    								//'sourceLanguage' => 'en',
+    								'fileMap' => [
+    										'app' => 'app.php',
+    										'app/error' => 'error.php',
+    								],
+    						],
+    				],
+    		],
+        
     ],
     'params' => $params,
+	
 ];
 
 if (YII_ENV_DEV) {
